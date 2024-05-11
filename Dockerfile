@@ -39,3 +39,8 @@ RUN mvn compile -f /app/SimpleVirtualThreads/Java21/pom.xml
 
 # Finally, specify the entry point or command to run your application (if needed)
 ENTRYPOINT ["java", "-jar", "cicd.jar"]
+
+
+
+
+
