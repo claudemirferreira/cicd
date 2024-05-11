@@ -9,7 +9,7 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.example</groupId>
-	<artifactId>dicd</artifactId>
+	<artifactId>cicd</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>cicd</name>
 	<description>Demo project for Spring Boot</description>
@@ -45,6 +45,7 @@
 	</dependencies>
 
 	<build>
+		<finalName>${artifactId}</finalName>
 		<plugins>
 			<plugin>
 				<groupId>org.springframework.boot</groupId>

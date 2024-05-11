@@ -1,23 +1,41 @@
-# Atualize o sistema e instale as dependências necessárias
-RUN apt-get update && \
-    apt-get install -y wget && \
-    apt-get install -y gnupg2 && \
-    apt-get install -y software-properties-common
+# Use a base image with Ubuntu
+FROM ubuntu:latest
 
-# Adicione o repositório com o JDK 21
-RUN add-apt-repository ppa:linuxuprising/java
+# Install required packages
+RUN apt-get update -y && \
+    apt-get install -y wget git && \
+    rm -rf /var/lib/apt/lists/*
 
-# Atualize novamente e instale o JDK 21
-RUN apt-get update && \
-    echo oracle-java21-installer shared/accepted-oracle-license-v1-2 select true | /usr/bin/debconf-set-selections && \
-    apt-get install -y oracle-java21-installer
+# Download and install Java 21
+RUN wget https://download.java.net/java/GA/jdk21/fd2272bbf8e04c3dbaee13770090416c/35/GPL/openjdk-21_linux-x64_bin.tar.gz && \
+    tar -xvf openjdk-21_linux-x64_bin.tar.gz && \
+    mv jdk-21 /usr/local && \
+    rm openjdk-21_linux-x64_bin.tar.gz
 
-# Configuração do ambiente Java
-ENV JAVA_HOME /usr/lib/jvm/java-21-oracle
-ENV PATH $PATH:$JAVA_HOME/bin
+# Set Java environment variables
+ENV JAVA_HOME=/usr/local/jdk-21
+ENV PATH=$JAVA_HOME/bin:$PATH
 
-# Verifique a instalação do Java
-RUN java -version
+# Install Maven 3.9.4
+RUN wget https://archive.apache.org/dist/maven/maven-3/3.9.4/binaries/apache-maven-3.9.4-bin.tar.gz && \
+    tar -xvf apache-maven-3.9.4-bin.tar.gz && \
+    mv apache-maven-3.9.4 /usr/local && \
+    rm apache-maven-3.9.4-bin.tar.gz
 
-# Defina o diretório de trabalho dentro do contêiner
+# Set Maven environment variables
+ENV MAVEN_HOME=/usr/local/apache-maven-3.9.4
+ENV PATH=$MAVEN_HOME/bin:$PATH
+
+# Set a working directory
 WORKDIR /app
+
+# Clone the GitHub repository and switch to the Development branch
+RUN git clone https://github.com/reselbob/SimpleVirtualThreads.git
+
+# Compile the project using Maven
+RUN mvn compile -f /app/SimpleVirtualThreads/Java21/pom.xml
+
+# Additional configurations can be added as per your requirements
+
+# Finally, specify the entry point or command to run your application (if needed)
+ENTRYPOINT ["java", "-jar", "cicd.jar"]
