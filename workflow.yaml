@@ -1,0 +1,27 @@
+name: Java CI with Maven
+
+on:
+  push:
+    branches:
+      - main  # O deploy será acionado apenas quando houver push para a branch "main"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2  # Essa ação faz o checkout do código do repositório
+
+      - name: Set up JDK 21
+        uses: actions/setup-java@v2
+        with:
+          java-version: 'adopt@1.17'  # Especifica a versão do JDK a ser usada
+
+      - name: Build with Maven
+        run: mvn -B clean package  # Compila o código Java usando o Maven
+
+      - name: Deploy to Server
+        # run: |
+          # Comandos para fazer o deploy da aplicação para o servidor
+          # Exemplo: scp target/my-application.jar user@server:/path/to/deploy
