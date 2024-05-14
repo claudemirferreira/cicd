@@ -31,7 +31,7 @@ jobs:
           file: ./src/Dockerfile
           push: true
           tags: |
-            claudemirferreiraduxcod3/cicd:${{github.run_number}}
+            claudemirferreiraduxcod3/cicd:v3
             claudemirferreiraduxcod3/cicd:latest                
 
       - name: Run Trivy vulnerability scanner
