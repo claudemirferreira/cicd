@@ -2,6 +2,6 @@
 FROM openjdk:17-jdk-slim
 WORKDIR /app
 CMD mvn -DskipTests=true clean package
-COPY target/cicd.jar /app/cicd.jar
+COPY target/cicd.jar /app/app1.jar
 EXPOSE 8080
-CMD ["java", "-jar", "cicd.jar"]
+CMD ["java", "-jar", "app1.jar"]
