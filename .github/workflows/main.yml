@@ -31,8 +31,8 @@ jobs:
           file: ./Dockerfile
           push: false
           tags: |
-            fabricioveronez/kube-news:${{github.run_number}}
-            fabricioveronez/kube-news:latest                
+            claudemirferreiraduxcod3/cicd:${{github.run_number}}
+            claudemirferreiraduxcod3/cicd:latest                
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.16.1
