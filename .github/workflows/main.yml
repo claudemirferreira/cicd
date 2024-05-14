@@ -27,7 +27,7 @@ jobs:
       - name: Construção da imagem Docker worker
         uses: docker/build-push-action@v5.0.0
         with:
-          context: ./src
+          context: .
           file: ./Dockerfile
           push: false
           tags: |
