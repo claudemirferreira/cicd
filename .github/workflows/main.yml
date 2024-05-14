@@ -24,7 +24,7 @@ jobs:
           context: .
           push: true
           tags: |
-            claudemirferreiraduxcod3/cicd:v1
+            claudemirferreiraduxcod3/cicd:v2
             claudemirferreiraduxcod3/cicd:latest
 
 
