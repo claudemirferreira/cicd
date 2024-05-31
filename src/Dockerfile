@@ -2,6 +2,6 @@
 FROM openjdk:21-jdk-slim
 WORKDIR /app
 CMD mvn clean package
-COPY target/cicd.jar /app/cicd.jar
+COPY target/app.jar /app/app.jar
 EXPOSE 8080
 CMD ["java", "-jar", "cicd.jar"]
