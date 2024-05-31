@@ -1,5 +1,5 @@
 # Use a imagem base oficial do OpenJDK 17
-FROM openjdk:17-jdk-slim
+FROM openjdk:21-jdk-slim
 WORKDIR /app
 CMD mvn clean package
 COPY target/cicd.jar /app/cicd.jar
