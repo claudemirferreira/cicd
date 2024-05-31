@@ -45,7 +45,7 @@ jobs:
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.16.1
         with:
-          image-ref: claudemirferreiraduxcod3/cicd:${{github.run_number}}
+          image-ref: claudemirferreiraduxcod3/cicd:4
           format: 'sarif'
           output: 'trivy-results.sarif'
           exit-code: 0
