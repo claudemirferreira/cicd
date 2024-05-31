@@ -39,13 +39,13 @@ jobs:
           file: Dockerfile
           push: true
           tags: |
-            claudemirferreiraduxcod3/cicd:3
+            claudemirferreiraduxcod3/myapp:${{github.run_number}}
             claudemirferreiraduxcod3/cicd:latest                
 
       - name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@0.16.1
         with:
-          image-ref: claudemirferreiraduxcod3/cicd:4
+          image-ref: claudemirferreiraduxcod3/myapp:${{github.run_number}}
           format: 'sarif'
           output: 'trivy-results.sarif'
           exit-code: 0
@@ -58,5 +58,5 @@ jobs:
 
       - name: Enviando a imagem
         run: |
-          docker push claudemirferreiraduxcod3/cicd:${{github.run_number}}
-          docker push claudemirferreiraduxcod3/cicd:latest
+          docker push claudemirferreiraduxcod3/myapp:${{github.run_number}}
+          docker push claudemirferreiraduxcod3/myapp:latest
