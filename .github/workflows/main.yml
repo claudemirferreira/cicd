@@ -60,3 +60,8 @@ jobs:
         run: |
           docker push claudemirferreiraduxcod3/myapp:${{github.run_number}}
           docker push claudemirferreiraduxcod3/myapp:latest
+
+  CD:
+    runs-on: ubuntu-latest
+    needs: [CI]
+
