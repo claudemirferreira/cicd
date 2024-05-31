@@ -22,3 +22,4 @@ COPY --from=build /app/target/myapp.jar /app/myapp.jar
 
 # Comando para executar a aplicação
 CMD ["java", "-jar", "myapp.jar"]
+
