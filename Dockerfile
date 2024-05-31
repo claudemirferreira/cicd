@@ -1,7 +1,12 @@
-# Use a imagem base oficial do OpenJDK 17
-FROM openjdk:17-jdk-slim
+# Use a base image with Java 21
+FROM openjdk:21-ea-28-jdk
+# Set the working directory inside the container
 WORKDIR /app
-CMD mvn -DskipTests=true clean package
-COPY target/cicd.jar /app/app.jar
+CMD mvn clean package
+# Copy the application's JAR file into the container at /app
+COPY target/app.jar /app/app.jar
+# Expose the port your application runs on (optional)
 EXPOSE 8080
-CMD ["java", "-jar", "app.jar"]
+# Define the command to run the application
+CMD ["java", "-jar", "/app/app.jar"]
+
